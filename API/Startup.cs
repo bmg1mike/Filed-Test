@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.Data.Repository;
 using API.Data.UnitOfWork;
 using API.Services;
 using API.Utilities;
@@ -40,6 +41,7 @@ namespace API
             services.AddDbContext<DataContext>(option=>option.UseSqlite(Configuration.GetConnectionString("TestConnection")));
             services.AddAutoMapper(typeof(PaymentMapper));
             services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<IProcessPaymentRepository,ProcessPaymentRepository>();
             services.AddScoped<ICheapPaymentGateway,CheapPaymentGateway>();
             services.AddScoped<IExpensivePaymentGateway,ExpensivePaymentGateway>();
         }
